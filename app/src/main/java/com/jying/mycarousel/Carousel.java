@@ -62,9 +62,11 @@ public class Carousel extends RelativeLayout {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            currentPosition++;
-            viewPager.setCurrentItem(currentPosition);
-            handler.sendEmptyMessageDelayed(0, 3000);
+            if (msg.what == 0) {
+                currentPosition++;
+                viewPager.setCurrentItem(currentPosition);
+                handler.sendEmptyMessageDelayed(0, 3000);
+            }
         }
     };
 
@@ -176,13 +178,14 @@ public class Carousel extends RelativeLayout {
 
     private void addPoints() {
         LayoutParams layoutParams = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(5, 5, 5, 5);
+        layoutParams.setMargins(10, 10, 10, 10);
         pointsLinearLayout.removeAllViews();
         int size = isUrlImage ? urlImages.size() : localImages.size();
         for (int i = 0; i < size; i++) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(dian);
             imageView.setLayoutParams(layoutParams);
+            imageView.setPadding(5, 5, 5, 5);
             pointsLinearLayout.addView(imageView);//把点加进布局中
         }
         switchPoints(0);
@@ -241,7 +244,7 @@ public class Carousel extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView imageView = new ImageView(getContext());
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);//设置图片样式
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);//设置图片样式
             imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

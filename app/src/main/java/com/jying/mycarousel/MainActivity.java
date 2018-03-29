@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         carousel = findViewById(R.id.test);
-        lists.add("http://img.tupianzj.com/uploads/allimg/150905/9-150Z5215644.jpg");
-        lists.add("http://img.tupianzj.com/uploads/allimg/150907/9-150ZH11524.jpg");
-        lists.add("http://img.tupianzj.com/uploads/allimg/150907/9-150ZH11524-50.jpg");
-        lists.add("http://img.tupianzj.com/uploads/allimg/150907/9-150ZH11524-51.jpg");
-        lists.add("http://img.tupianzj.com/uploads/allimg/150907/9-150ZH11525.jpg");
+        lists.add("http://img0.imgtn.bdimg.com/it/u=2743962233,869647381&fm=27&gp=0.jpg");
+        lists.add("http://img4.imgtn.bdimg.com/it/u=1370574542,486920420&fm=27&gp=0.jpg");
+        lists.add("http://img4.imgtn.bdimg.com/it/u=819488109,1179022423&fm=27&gp=0.jpg");
+        lists.add("http://img0.imgtn.bdimg.com/it/u=1326322923,3315473125&fm=27&gp=0.jpg");
+        lists.add("http://img0.imgtn.bdimg.com/it/u=733474615,2489633519&fm=27&gp=0.jpg");
         carousel.setUrlImage(lists);
         carousel.setOnImageClickListener(new OnImageClickListaner() {
             @Override
