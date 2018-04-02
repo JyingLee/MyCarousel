@@ -43,7 +43,6 @@ public class Carousel extends RelativeLayout {
     private int currentPosition;//指示点现在的位置
     private int dian = R.drawable.dian; //指示点
     private CarouselAdapter carouselAdapter;
-    private boolean isAutoPlay;//监听是否在自动滑动
 
     public Carousel(Context context) {
         this(context, null);
@@ -164,15 +163,11 @@ public class Carousel extends RelativeLayout {
         }
     }
 
-    private void autoPlay() {
-        isAutoPlay = true;
-        if (isAutoPlay) {
-            handler.sendEmptyMessageDelayed(0, 3000);
-        }
+    public void autoPlay() {
+        handler.sendEmptyMessageDelayed(0, 3000);
     }
 
-    private void stopPlay() {
-        isAutoPlay = false;
+    public void stopPlay() {
         handler.removeMessages(0);
     }
 
@@ -297,17 +292,15 @@ public class Carousel extends RelativeLayout {
     }
 
     @Override
-    protected boolean dispatchHoverEvent(MotionEvent event) {
-        if (isAutoPlay) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: //当触摸轮播图停止自动滑动
-                    stopPlay();
-                    break;
-                case MotionEvent.ACTION_OUTSIDE://当手指抬起开始自动轮播
-                    autoPlay();
-                    break;
-            }
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN: //当触摸轮播图停止自动滑动
+                stopPlay();
+                break;
+            case MotionEvent.ACTION_UP://当手指抬起开始自动轮播
+                autoPlay();
+                break;
         }
-        return super.dispatchHoverEvent(event);
+        return super.dispatchTouchEvent(ev);
     }
 }
